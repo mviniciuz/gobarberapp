@@ -121,6 +121,5 @@ export default function Profile() {
 
 Profile.navigarionOptions = {
   tabBarLabel: 'Meu Perfil',
-  tabBarIcon: ({ tintColor }) => <Icon name="event" size={20} color={tintColor} />
-
+  tabBarIcon: ({ tintColor }) => <Icon name="person" size={20} color={tintColor} />
 }

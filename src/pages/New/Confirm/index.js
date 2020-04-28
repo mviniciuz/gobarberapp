@@ -3,6 +3,8 @@ import { formatRelative, parseISO } from 'date-fns'
 import pt from 'date-fns/locale/pt';
 import { TouchableOpacity } from 'react-native';
 
+import api from '~/services/api';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Background from '~/components/Background';
@@ -17,6 +19,15 @@ export default function Confirm({ navigation }) {
     () => formatRelative(parseISO(time), new Date(), { locale: pt }), [time]
   );
 
+  async function handleAddAppointment() {
+    await api.post('appointments', {
+      provider_id: provider.id,
+      date: time,
+    });
+
+    navigation.navigate('Dashboard');
+  }
+
   return (
     <Background>
       <Container>
@@ -29,6 +40,7 @@ export default function Confirm({ navigation }) {
         />
         <Name>{provider.name}</Name>
         <Time>{dateFormatted}</Time>
+        <SubmitButton onPress={() => handleAddAppointment()}> Confirmar Agendamento </SubmitButton>
       </Container>
     </Background >
   );

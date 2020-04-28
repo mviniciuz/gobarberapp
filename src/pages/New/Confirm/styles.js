@@ -24,7 +24,7 @@ color: #fff;
 
 export const Time = styled.Text`
   margin-top: 4px;
-  font-size: 4px;
+  font-size: 18px;
   color: rgba(255,255,255,0.6);
 `;
 
