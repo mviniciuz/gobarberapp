@@ -16,31 +16,29 @@ export default function SelectDateTime({ navigation }) {
   const provider = navigation.getParam('provider');
 
   useEffect(() => {
-
-    console.tron.log(date)
     async function loadAvailable() {
       const response = await api.get(`providers/${provider.id}/available`, {
         params: {
           date: date.getTime(),
         },
       });
-
-      console.tron.log(response.data);
       setHours(response.data);
     }
 
     loadAvailable();
   }, [date, provider.id])
 
-  function handleSelectHour(time) {
+  function handleSelectHour(value, time) {
     navigation.navigate('Confirm', {
       provider,
       time,
+      value,
+      date,
     })
-
   }
 
   return (
+
     <Background>
       <Container>
         <DateInput date={date} onChange={setDate} />
@@ -48,9 +46,8 @@ export default function SelectDateTime({ navigation }) {
           data={hours}
           keyExtractor={(item => item.time)}
           renderItem={({ item }) => (
-            <Hour onPress={() => handleSelectHour(item.value)} enabled={item.avaiable}>
+            <Hour onPress={() => handleSelectHour(item.value, item.time)} enabled={item.avaiable}>
               <Title>{item.time}</Title>
-              <Title>{item.avaiable}</Title>
             </Hour>
           )}
         />

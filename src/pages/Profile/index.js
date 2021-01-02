@@ -119,7 +119,7 @@ export default function Profile() {
   );
 }
 
-Profile.navigarionOptions = {
+Profile.navigationOptions = {
   tabBarLabel: 'Meu Perfil',
   tabBarIcon: ({ tintColor }) => <Icon name="person" size={20} color={tintColor} />
 }

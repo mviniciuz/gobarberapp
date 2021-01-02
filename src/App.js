@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import 'react-native-gesture-handler';
+
 import createRouter from './routes';
 
 export default function App() {
